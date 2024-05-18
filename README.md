@@ -1,4 +1,4 @@
-# Whisper_Typing
+# Whisper_JUST_Typing
 Enable voice input with Whisper anywhere on your PC (with a few seconds of lag)
 
 まだ以下の説明は準備段階です。
@@ -13,13 +13,13 @@ WhisperTypingは、Whisper APIを使用して音声を録音し、その音声�
 
 
 ## 前提条件
-*Python 3以降
-*OPENAI API KEY
+* Python 3以降
+* OPENAI API KEY
 
 ## 準備
 ### 準備1（インストール）
 '''
-git clone https://github.com/your-username/WhisperTyping.git
+git clone https://github.com/Jika-1366/WhisperTyping.git
 cd WhisperTyping
 '''
 
