@@ -30,15 +30,15 @@ READMEファイルの作成をLLMに頼むとき
 
 ## 準備
 ### 準備1（インストール）
-''' batch
+``` batch
 git clone https://github.com/Jika-1366/WhisperTyping.git
 cd WhisperTyping
-'''
+```
 
 ### 依存関係
-''' batch 
+``` batch 
 pip install pyaudio 
-'''
+```
 
 など
 
@@ -54,9 +54,9 @@ export OPENAI_API_KEY='your_openai_api_key'
 ### ショートカットキーによる使用(windows)
 プログラムをキーボードショートカットで起動するのが便利です。以下の手順で設定できます:
 1. .batファイルを以下のように書きます。
-''' batch
+``` batch
 start /min cmd /c "C:/Users/user/anaconda3/envs/openinterpreter/python.exe c:/Users/user/original_programs/mine/projects/whisper_input2/main.py"
- '''
+```
 2. Pythonプログラムを起動するショートカットを作成します。
 3. 作成したショートカットのプロパティを開き、「ショートカットキー」欄に Shift + Ctrl + V と入力します（VはVoiceのVです）。
 
