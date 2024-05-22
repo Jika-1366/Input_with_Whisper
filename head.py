@@ -47,8 +47,8 @@ def transcribe_audio(API_KEY, audio_file_path):
         data = {
             "model": "whisper-1",
             "response_format": "json",
-            "prompt": "これは日本語の音声ファイルです。",
-            "language": "ja",
+            "prompt": "user will speak in English and Japanese."
+            
         }
         
         response = requests.post(url, headers=headers, files=files, data=data)
