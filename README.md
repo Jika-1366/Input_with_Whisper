@@ -16,10 +16,10 @@ WhisperTypingは、Whisper APIを使用して音声を録音し、その音声�
 
 
 ## 使用例
-READMEファイルの作成をLLMに頼むとき
-タイピングに疲れた時
-タイピングが苦手な方へ
-気楽なメールを入力する際に
+* READMEファイルの作成をLLMに頼むとき
+* タイピングに疲れた時
+* タイピングが苦手な方へ
+* 気楽なメールを入力する際に
 
 
 
@@ -53,9 +53,9 @@ export OPENAI_API_KEY='your_openai_api_key'
 ### 準備3(ショートカットキー登録)
 ### ショートカットキーによる使用(windows)
 プログラムをキーボードショートカットで起動するのが便利です。以下の手順で設定できます:
-1. .batファイルを以下のように書きます。
+1. .batファイルを以下のように書きます。今回は以下2つの絶対パスを使用します。
 ``` batch
-start /min cmd /c "C:/Users/user/anaconda3/envs/openinterpreter/python.exe c:/Users/user/original_programs/mine/projects/whisper_input2/main.py"
+start /min cmd /c "path_to_python/python.exe path_to_main/main.py"
 ```
 2. Pythonプログラムを起動するショートカットを作成します。
 3. 作成したショートカットのプロパティを開き、「ショートカットキー」欄に Shift + Ctrl + V と入力します（VはVoiceのVです）。
