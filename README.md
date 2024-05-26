@@ -1,8 +1,11 @@
-# Whisper_JUST_Typing
+# Input_with_Whisper
 Enable voice input with Whisper anywhere on your PC (with a few seconds of lag)
 
 
-WhisperTypingは、Whisper APIを使用して音声を録音し、その音声をテキストに変換し、Pythonを使用して変換されたテキストを自動的に入力するプロジェクトです。windows向けです。
+Input_with_Whisperは、Whisper APIを使用して音声を録音し、その音声をテキストに変換し、Pythonを使用して変換されたテキストを自動的に入力するプロジェクトです。windows向けです。デモ動画をご覧ください。
+
+https://github.com/Jika-1366/Input_with_Whisper/assets/169031638/a8a62a44-fde3-4c35-ae6f-eaa6c360884f
+なんか鼻につく声ですね…
 
 ## 操作方法
 ### 基本的な操作方法
