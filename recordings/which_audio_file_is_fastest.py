@@ -7,6 +7,8 @@ import requests
 import os
 import time
 import matplotlib.pyplot as plt
+import sys
+
 from head import get_API_KEY
 
 API_KEY = get_API_KEY()

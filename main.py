@@ -32,7 +32,7 @@ frames = []
 audio = pyaudio.PyAudio()
 
 global converted_filename
-converted_filename = "recording.mp4"
+converted_filename = "recordings/recording.mp4"
 
 
 global transcription, write_switch, running
@@ -56,7 +56,7 @@ def stop_recording():
     print("Recording stopped.")
 
     # 録音データを.wavファイルに保存
-    filename = "recording.wav"
+    filename = "recordings/recording.wav"
     wf = wave.open(filename, "wb")
     wf.setnchannels(CHANNELS)
     wf.setsampwidth(audio.get_sample_size(FORMAT))
@@ -77,24 +77,23 @@ def stop_recording():
         traceback.print_exc()
         return "error"
     
-# deleteキーが押されたときのイベントハンドラ
-def on_delete_press(event):
+# 録音の制御
+def toggle_recording(event):
     global recording
     if recording:
         stop_recording()
-        
     else:
         start_recording()
 
-# deleteキーのイベントリスナーを登録
-keyboard.on_press_key("delete", on_delete_press)
+# shiftキーのイベントリスナーを登録
+keyboard.on_press_key("shift", toggle_recording)
 
-def on_esc_press(event):
+def exit_program(event):
     global running  # メインループの実行を制御するグローバル変数
     running = False  # メインループを終了させる
 
 # escキーのイベントリスナーを登録
-keyboard.on_press_key("esc", on_esc_press)
+keyboard.on_press_key("esc", exit_program)
 
 
 def main_transcription(audio_file_path):

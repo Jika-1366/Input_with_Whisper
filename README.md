@@ -68,8 +68,7 @@ start /min cmd /c "path_to_python.exe path_to_main.py"
 
 
 ## 各ファイルの説明
-Main.py: 音声録音、文字起こし、入力を管理する中央スクリプト。
-
+Main.py: 音声録音、文字起こし、入力を管理する中央スクリプト。 
 Head.py: Main.pyで使用されるヘルパー関数が含まれています。
 
 

@@ -31,7 +31,6 @@ def get_API_KEY():
 def write_japanese(text):
     for char in text:
         keyboard.write(char)
-    
 
 
 def transcribe_audio(API_KEY, audio_file_path):
@@ -47,8 +46,7 @@ def transcribe_audio(API_KEY, audio_file_path):
         data = {
             "model": "whisper-1",
             "response_format": "json",
-            "prompt": "user will speak in English and Japanese."
-            
+            "prompt": "Input with Whisper, Open Interpreter, Dキャン、大輝(ひろき)、清川 大輝(きよかわ ひろき)というサッカー選手がいます, 統合開発環境, Cursor, Gemini, Claude" #By adding proper nouns, Whisper-1 recognize the sound of them.
         }
         
         response = requests.post(url, headers=headers, files=files, data=data)
