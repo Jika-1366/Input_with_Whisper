@@ -4,6 +4,7 @@ import os
 import requests
 import pyautogui
 import pyperclip
+import json
 
 from dotenv import load_dotenv
 
@@ -57,13 +58,27 @@ def write_japanese(text):
         for char in text:
             keyboard.write(char)
 
-def transcribe_audio(API_KEY, audio_file_path):
-    if API_KEY:
-        sub_transcribe_audio1(API_KEY, audio_file_path)
-    else:
-        sub_transcribe_audio2()
+# JSONファイルから単語リストを読み込む関数  
+def load_word_list(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        word_list = json.load(file)
+    return word_list
 
-def sub_transcribe_audio1(API_KEY, audio_file_path):
+
+# 音声データを文字起こしする関数
+def main_transcription(c):
+    audio_file_path = c.converted_filename
+    result = transcribe_audio(c.API_KEY, audio_file_path, c.word_list)
+    if result is None or result == "":
+        print("何も聞こえませんでした。")
+    else:
+        return result
+def transcribe_audio(API_KEY, audio_file_path, word_list):
+    if API_KEY:
+        return sub_transcribe_audio1(API_KEY, audio_file_path, word_list)
+    else:
+        return sub_transcribe_audio2(audio_file_path)
+def sub_transcribe_audio1(API_KEY, audio_file_path, word_list):
     url = "https://api.openai.com/v1/audio/transcriptions"
     headers = {
         "Authorization": f"Bearer {API_KEY}",
@@ -76,8 +91,9 @@ def sub_transcribe_audio1(API_KEY, audio_file_path):
         data = {
             "model": "whisper-1",
             "response_format": "json",
-            "prompt": "Input with Whisper, Open Interpreter, Dキャン、大輝(ひろき)、清川 大輝(きよかわ ひろき)というサッカー選手がいます, 統合開発環境, Cursor, Gemini, Claude" #By adding proper nouns, Whisper-1 recognize the sound of them.
+            "prompt": " ".join(word_list) #By adding proper nouns, Whisper-1 recognize the sound of them.
         }
+        
         
         response = requests.post(url, headers=headers, files=files, data=data)
     
@@ -98,18 +114,8 @@ def sub_transcribe_audio2(audio_file_path):
         str: 文字起こし結果
     """
     SERVER_URL = 'http://cool-hiji-1700.schoolbus.jp/programs/whisper/upload.php'
-    audio_file_path = "recordings/recording.mp4"
     with open(audio_file_path, 'rb') as audio_file:
         files = {'audio_file': audio_file}
         response = requests.post(SERVER_URL, files=files)
     return response.text
-
-# 音声データを文字起こしする関数
-def main_transcription(c):
-    audio_file_path = c.converted_filename
-    result = transcribe_audio(c.API_KEY, audio_file_path)
-    if result is None or result == "":
-        print("何も聞こえませんでした。")
-    else:
-        return result
 

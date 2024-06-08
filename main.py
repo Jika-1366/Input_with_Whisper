@@ -15,7 +15,7 @@ import os
 import threading
 import time
 
-from head import logging_error, write_japanese, get_API_KEY, transcribe_audio
+from head import get_API_KEY, load_word_list
 from audiorecorder import AudioRecorder
 from transcriptionhandler import TranscriptionHandler
 
@@ -34,6 +34,8 @@ class Constants:
     RATE = 44100             # サンプリングレート
     CHUNK = 1024              # チャンクサイズ
     converted_filename = "recordings/recording.mp4"  # 変換後のファイル名
+    word_list_path = "config/word_list.json"
+    word_list = load_word_list(word_list_path)
     # APIキーを取得
     API_KEY = get_API_KEY()
 

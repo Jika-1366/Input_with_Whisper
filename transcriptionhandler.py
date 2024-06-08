@@ -7,7 +7,7 @@ class TranscriptionHandler:
         self.g = g              # グローバル変数クラスのインスタンス
         self.c = c              # 定数クラスのインスタンス
         self.running = True      # 文字起こしスレッドの実行状態を示すフラグ
-
+        
     # 文字起こし処理のメインループ
     def start(self):
         while self.running:
