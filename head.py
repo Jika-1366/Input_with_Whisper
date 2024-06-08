@@ -103,3 +103,13 @@ def sub_transcribe_audio2(audio_file_path):
         files = {'audio_file': audio_file}
         response = requests.post(SERVER_URL, files=files)
     return response.text
+
+# 音声データを文字起こしする関数
+def main_transcription(c):
+    audio_file_path = c.converted_filename
+    result = transcribe_audio(c.API_KEY, audio_file_path)
+    if result is None or result == "":
+        print("何も聞こえませんでした。")
+    else:
+        return result
+

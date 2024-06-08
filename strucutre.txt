@@ -1,0 +1,26 @@
+Input_with_whipser/
+├── main.py               # メインエントリーポイント
+├── requirements.txt      # 必要なパッケージのリスト
+├── README.md             # プロジェクトの説明
+├── config/
+│   └── config.yaml       # 設定ファイル
+├── resources/
+│   ├── images/           # 画像ファイル
+│   ├── styles/           # スタイルシート（CSSやQSS）
+│   └── data/             # データファイル
+├── src/
+│   ├── __init__.py       # パッケージとして認識するためのファイル
+│   ├── gui/
+│   │   ├── __init__.py
+│   │   ├── main_window.py    # メインウィンドウの定義
+│   │   └── widgets.py        # カスタムウィジェット
+│   ├── logic/
+│   │   ├── __init__.py
+│   │   └── processor.py      # ビジネスロジック
+│   └── utils/
+│       ├── __init__.py
+│       └── helpers.py        # ヘルパー関数
+└── tests/
+    ├── __init__.py
+    ├── test_main.py           # テストスクリプト
+    └── test_processor.py      # ビジネスロジックのテスト
