@@ -5,7 +5,6 @@ Enable voice input with Whisper anywhere on your PC (with a few seconds of lag)
 Input_with_Whisperは、Whisper APIを使用して音声を録音し、その音声をテキストに変換し、Pythonを使用して変換されたテキストを自動的に入力するプロジェクトです。windows向けです。デモ動画をご覧ください。
 
 [![Video Demonstration](https://img.youtube.com/vi/DXQxencVgeU/0.jpg)](https://www.youtube.com/watch?v=DXQxencVgeU) <br>
-鼻につく声と話し方だと自分で思いました。いつか取り直したいと思います。
 
 ## 使用上の注意
 * 使用による不利益の責任は負いかねますので、自己責任でご使用ください。
@@ -35,18 +34,27 @@ Input_with_Whisperは、Whisper APIを使用して音声を録音し、その音
 
 
 ## 前提条件
-* Python 3以降
-* OPENAI API KEYを持っていること（無料で取得できます）
-* 必要なpythonライブラリがあること（数は少ないです）
+
+* ~~Python 3以降~~
+* ~~OPENAI API KEYを持っていること（無料で取得できます）~~
+* ~~必要なpythonライブラリがあること（数は少ないです）~~
+
+なくなりました。
 
 ## 準備
-### 準備1（インストール）
+### 簡単な準備
+「<>code」ボタン を押したら、zipインストールをクリックしてください。
+ダウンロードしたzipファイルを解凍し、Input_with_Whipser.exeファイルを実行してください。
+
+
+### 面倒な準備
+#### 準備1（インストール）
 ``` batch
-git clone https://github.com/Jika-1366/WhisperTyping.git
-cd WhisperTyping
+git clone https://github.com/Jika-1366/Input_with_Whisper.git
+cd Input_with_Whisper
 ```
 
-### 依存関係
+#### 依存関係
 ``` batch 
 pip install pyaudio 
 ```
@@ -54,20 +62,22 @@ pip install pyaudio
 など
 
 
-### 準備2(環境変数の登録とライブラリインストール)
+#### 準備2(環境変数の登録とライブラリインストール)
 システム環境変数またはユーザー環境変数にOpenAI APIキーを設定します:
 export OPENAI_API_KEY='your_openai_api_key'
 
 ここまでできたら、一度普通にpythonコード（main.py）を実行して、テストしてみてください。
 
 
-### 準備3(ショートカットキー登録)
-### ショートカットキーによる使用(windows)
+#### 準備3(ショートカットキー登録)
+#### ショートカットキーによる使用(windows)
 プログラムをキーボードショートカットで起動するのが便利です。以下の手順で設定できます:
 1. .batファイルを以下のように書きます。今回は以下2つの絶対パスを使用します。
 ``` batch
+cd "main.pyのあるディレクトリパス"
 start /min cmd /c "path_to_python.exe path_to_main.py"
 ```
+
 2. Pythonプログラムを起動するショートカットを作成します。
 3. 作成したショートカットのプロパティを開き、「ショートカットキー」欄に Shift + Ctrl + V と入力します（VはVoiceのVです）。
 
