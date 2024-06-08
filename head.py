@@ -41,7 +41,7 @@ def transcribe_audio(API_KEY, audio_file_path):
     
     with open(audio_file_path, "rb") as audio_file:
         files = {
-            "file": (audio_file_path, audio_file, "audio/webm"),
+            "file": (audio_file_path, audio_file, "audio/mp4"),
         }
         data = {
             "model": "whisper-1",
@@ -53,7 +53,7 @@ def transcribe_audio(API_KEY, audio_file_path):
     
     if response.status_code != 200:
         logging_error(f"Error sending request: {response.status_code}")  # エラーメッセージをログファイルに記録
-        return "nothing"
+        return "none"
     
     response_data = response.json()
     transcript = response_data["text"]
