@@ -1,5 +1,6 @@
 import time
-from head import main_transcription, write_japanese
+from src.logic import head 
+from src.logic.head import main_transcription, write_japanese
 
 # 文字起こし処理を行うクラス
 class TranscriptionHandler:

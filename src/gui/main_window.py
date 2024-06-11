@@ -1,10 +1,13 @@
 import tkinter as tk
 from tkinter import ttk
 import json
+import keyboard
+from src.logic.audiorecorder import AudioRecorder
 
 
 class MainWindow:
     def __init__(self, recorder):
+
         self.recorder = recorder
 
         self.root = tk.Tk()
@@ -29,7 +32,7 @@ class MainWindow:
             self.status_canvas.create_oval(5, 5, 15, 15, fill="red")  # 赤丸を描画
         else:
             self.status_canvas.create_oval(5, 5, 15, 15, fill="black")  # 黒丸を描画
-        self.root.after(100, self.update_status)  # 0.1秒ごとに状態を更新
+        self.root.after(200, self.update_status)  # 0.2秒ごとに状態を更新
 
     def add_word(self):
         word = self.word_entry.get()

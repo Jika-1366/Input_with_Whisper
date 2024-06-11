@@ -2,7 +2,7 @@
 このプログラムは、ユーザーがshiftキーで録音を制御し、自動で文字起こしを行うプログラムです。
 
 - deleteキーを一回押すと録音が開始され、もう一度押すと録音が停止します。
-- 録音データはwavファイルに一時保存された後、mp4に変換されます。
+- 録音データはwavファイルに一時保存された後、c.formatに変換されます。
 - 変換されたmp4ファイルは自動的に文字起こしされ、結果が日本語で表示されます。
 - escキーを押すとプログラムが終了します。
 """
@@ -12,7 +12,8 @@ import pyaudio
 import traceback
 import threading
 
-from head import get_API_KEY, load_word_list
+from src.logic import head 
+from src.logic.head import get_API_KEY, load_word_list
 #from audiorecorder import AudioRecorder
 from src.logic.audiorecorder import AudioRecorder
 from src.logic.transcriptionhandler import TranscriptionHandler
@@ -33,7 +34,8 @@ class Constants:
     CHANNELS = 1              # 録音チャンネル数
     RATE = 44100             # サンプリングレート
     CHUNK = 1024              # チャンクサイズ
-    converted_filename = "recordings/recording.mp4"  # 変換後のファイル名
+    converted_format = "mp3"
+    converted_filename = f"recordings/recording.{converted_format}"  # 変換後のファイル名
     word_list_path = "config/word_list.json"
     word_list = load_word_list(word_list_path)
     # APIキーを取得
@@ -54,16 +56,16 @@ if __name__ == "__main__":
         watcher_thread = threading.Thread(target=transcription_handler.start)
         watcher_thread.start()
 
-        # イベントリスナーを登録
+                # イベントリスナーを登録
         keyboard.on_press_key("shift", recorder.toggle_recording)
         keyboard.on_press_key("esc", recorder.exit_program)
         keyboard.on_press_key("esc", transcription_handler.exit_program)
 
         # GUI の開始
-        main_window = MainWindow(recorder) # 追加
+        #main_window = MainWindow(recorder) # 追加
 
         # メインループ開始 (GUI の開始により不要になる)
-        # recorder.main() 
+        recorder.main() 
     except Exception as e:
         print(f"An error occurred: {e}")
         traceback.print_exc()

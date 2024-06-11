@@ -69,17 +69,19 @@ def load_word_list(file_path):
 # 音声データを文字起こしする関数
 def main_transcription(c):
     audio_file_path = c.converted_filename
-    result = transcribe_audio(c.API_KEY, audio_file_path, c.word_list)
+    result = transcribe_audio(c.API_KEY, audio_file_path, c.word_list, c)
     if result is None or result == "":
         print("何も聞こえませんでした。")
     else:
         return result
-def transcribe_audio(API_KEY, audio_file_path, word_list):
-    if API_KEY:
+def transcribe_audio(API_KEY, audio_file_path, word_list,c):
+    if API_KEY and False:
         return sub_transcribe_audio1(API_KEY, audio_file_path, word_list)
-    else:
+    elif True:
         return sub_transcribe_audio2(audio_file_path)
-def sub_transcribe_audio1(API_KEY, audio_file_path, word_list):
+    else:
+        return sub_transcribe_audio3(audio_file_path)
+def sub_transcribe_audio1(API_KEY, audio_file_path, word_list,c):
     url = "https://api.openai.com/v1/audio/transcriptions"
     headers = {
         "Authorization": f"Bearer {API_KEY}",
@@ -87,7 +89,7 @@ def sub_transcribe_audio1(API_KEY, audio_file_path, word_list):
     
     with open(audio_file_path, "rb") as audio_file:
         files = {
-            "file": (audio_file_path, audio_file, "audio/mp4"),
+            "file": (audio_file_path, audio_file, f"audio/{c.converted_format}"),
         }
         data = {
             "model": "whisper-1",
@@ -99,6 +101,7 @@ def sub_transcribe_audio1(API_KEY, audio_file_path, word_list):
         response = requests.post(url, headers=headers, files=files, data=data)
     
     if response.status_code != 200:
+        print(f"Error sending request: {response.status_code}")
         logging_error(f"Error sending request: {response.status_code}")  # エラーメッセージをログファイルに記録
         return "none"
     
@@ -107,7 +110,18 @@ def sub_transcribe_audio1(API_KEY, audio_file_path, word_list):
     
     return transcript
 
-def sub_transcribe_audio2(audio_file_path):
+def sub_transcribe_audio2( audio_file_path):
+    from openai import OpenAI
+    client = OpenAI()
+
+    with open(audio_file_path, "rb") as audio_file:
+        transcription = client.audio.transcriptions.create(
+            model="whisper-1", 
+            file=audio_file
+        )
+        return transcription.text
+
+def sub_transcribe_audio3(audio_file_path):
     """音声ファイルをサーバーに送信し、文字起こし結果を取得する。
     Args:
         audio_file_path (str): 音声ファイルのパス

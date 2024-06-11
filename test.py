@@ -17,6 +17,6 @@ def transcribe_audio_from_server(audio_file_path: str) -> str:
     return response.text
 
 if __name__ == "__main__":
-    audio_file_path = "recordings/recording.mp4"
+    audio_file_path = "recordings/recording.mp3"
     transcription_result = transcribe_audio_from_server(audio_file_path)
     print(f"文字起こし結果: {transcription_result}")

@@ -2,7 +2,8 @@ import pyaudio
 import wave
 import traceback
 import os
-from head import logging_error
+from src.logic import head 
+from src.logic.head import logging_error
 
 # 音声録音処理を行うクラス
 class AudioRecorder:
