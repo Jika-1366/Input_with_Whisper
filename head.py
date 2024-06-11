@@ -5,8 +5,8 @@ import requests
 import pyautogui
 import pyperclip
 import json
-
 from dotenv import load_dotenv
+import time
 
 # ロギング設定
 logging.basicConfig(filename='error.log', level=logging.ERROR, format='%(asctime)s:%(levelname)s:%(message)s')
@@ -34,7 +34,8 @@ def get_API_KEY():
 
 
 def write_japanese(text):
-    """日本語を入力する場合、英数字モードである必要があるので、泥臭く確認"""
+    """日本語を入力する場合、英数字モードである必要があるので、泥臭く確認
+    現在のクリップボードを書き換えてしまうので、残しておいてもいいかもしれない。"""
     def change_to_alphab_mode():
         # 'space' キーを押す 
         pyautogui.press('space')
@@ -55,7 +56,7 @@ def write_japanese(text):
 
     change_to_alphab_mode()
     if text and isinstance(text, str):
-        for char in text:
+        for char in text: #この書き方の方が速かった。
             keyboard.write(char)
 
 # JSONファイルから単語リストを読み込む関数  

@@ -9,15 +9,15 @@
 
 import keyboard
 import pyaudio
-import wave
 import traceback
-import os
 import threading
-import time
 
 from head import get_API_KEY, load_word_list
-from audiorecorder import AudioRecorder
-from transcriptionhandler import TranscriptionHandler
+#from audiorecorder import AudioRecorder
+from src.logic.audiorecorder import AudioRecorder
+from src.logic.transcriptionhandler import TranscriptionHandler
+from src.gui.main_window import MainWindow 
+
 
 # グローバル変数を格納するクラス
 class GlobalVars:
@@ -59,9 +59,11 @@ if __name__ == "__main__":
         keyboard.on_press_key("esc", recorder.exit_program)
         keyboard.on_press_key("esc", transcription_handler.exit_program)
 
-        # 録音のメインループを開始
-        recorder.main()
+        # GUI の開始
+        main_window = MainWindow(recorder) # 追加
 
+        # メインループ開始 (GUI の開始により不要になる)
+        # recorder.main() 
     except Exception as e:
         print(f"An error occurred: {e}")
         traceback.print_exc()

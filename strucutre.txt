@@ -3,7 +3,8 @@ Input_with_whipser/
 ├── requirements.txt      # 必要なパッケージのリスト
 ├── README.md             # プロジェクトの説明
 ├── config/
-│   └── config.yaml       # 設定ファイル
+│   ├── config.yaml       # 設定ファイル
+│   └── word_list.json     # 単語リスト
 ├── resources/
 │   ├── images/           # 画像ファイル
 │   ├── styles/           # スタイルシート（CSSやQSS）

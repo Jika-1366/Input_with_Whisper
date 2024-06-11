@@ -1,5 +1,6 @@
 
+config/word_list.json
 
-
+/build/
 /_pycache_/
 /recordings/
