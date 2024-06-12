@@ -23,6 +23,9 @@ from src.gui.main_window import MainWindow
 # グローバル変数を格納するクラス
 class GlobalVars:
     def __init__(self):
+        self.pause = False
+        
+        self.recording = False
         self.frames = []         # 録音データのフレームを格納するリスト
         self.running = True      # プログラムの実行状態を示すフラグ
         self.write_switch = False  # 文字起こし処理を開始するフラグ
@@ -63,13 +66,13 @@ if __name__ == "__main__":
         watcher_thread = threading.Thread(target=transcription_handler.start)
         watcher_thread.start()
 
-        # イベントリスナ。ーを登録
+        # イベントリスナーを登録
         keyboard.on_press_key("shift", recorder.toggle_recording)
         keyboard.on_press_key("esc", g.stop)
         keyboard.on_press_key("esc", transcription_handler.exit_program)
 
         # GUI の開始
-        main_window = MainWindow(recorder, g) # 追加
+        main_window = MainWindow(g) # 追加
         print("main_window開始")
         
         

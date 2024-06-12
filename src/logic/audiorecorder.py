@@ -11,17 +11,17 @@ class AudioRecorder:
         self.g = g              # グローバル変数クラスのインスタンス
         self.c = c              # 定数クラスのインスタンス
         self.audio = pyaudio.PyAudio()  # PyAudioのインスタンス
-        self.recording = False  # 録音状態を示すフラグ
+    
 
     # 録音を開始する関数
     def start_recording(self):
-        self.recording = True
+        self.g.recording = True
         self.g.frames = []
         print("Recording started...")
 
     # 録音を停止する関数
     def stop_recording(self):
-        self.recording = False
+        self.g.recording = False
         print("Recording stopped.")
 
         # 録音データをwavファイルに保存
@@ -45,10 +45,12 @@ class AudioRecorder:
         
     # 録音の制御を行う関数
     def toggle_recording(self, event):
-        if self.recording:
+        if self.g.recording:
             self.stop_recording()
-        else:
+        elif not self.g.pause:
             self.start_recording()
+        else:
+            pass
 
     # プログラムを終了する関数
     #def exit_program(self, event):
@@ -68,7 +70,7 @@ class AudioRecorder:
         # メインループ
         try:
             while self.g.running:
-                if self.recording:
+                if self.g.recording:
                     data = stream.read(self.c.CHUNK)
                     self.g.frames.append(data)
         except KeyboardInterrupt:
