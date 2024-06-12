@@ -51,8 +51,8 @@ class AudioRecorder:
             self.start_recording()
 
     # プログラムを終了する関数
-    def exit_program(self, event):
-        self.g.running = False
+    #def exit_program(self, event):
+        #self.g.
 
     # 音声録音のメインループ
     def main(self):

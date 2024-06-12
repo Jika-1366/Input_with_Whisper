@@ -27,6 +27,9 @@ class GlobalVars:
         self.running = True      # プログラムの実行状態を示すフラグ
         self.write_switch = False  # 文字起こし処理を開始するフラグ
         self.transcription = ""    # 文字起こし結果を格納する変数
+        self.color = "black" #or "red" redは録音中
+    def stop(self, event):
+        self.running = False
 
 # 定数を格納するクラス
 class Constants:
@@ -34,7 +37,7 @@ class Constants:
     CHANNELS = 1              # 録音チャンネル数
     RATE = 44100             # サンプリングレート
     CHUNK = 1024              # チャンクサイズ
-    converted_format = "mp3"
+    converted_format = "mp4"
     converted_filename = f"recordings/recording.{converted_format}"  # 変換後のファイル名
     word_list_path = "config/word_list.json"
     word_list = load_word_list(word_list_path)
@@ -52,20 +55,26 @@ if __name__ == "__main__":
         recorder = AudioRecorder(g, c)
         transcription_handler = TranscriptionHandler(g, c)
         
+        # 録音スレッドを開始
+        recorder_thread = threading.Thread(target=recorder.main)
+        recorder_thread.start()
+
         # 文字起こしスレッドを開始
         watcher_thread = threading.Thread(target=transcription_handler.start)
         watcher_thread.start()
 
-                # イベントリスナーを登録
+        # イベントリスナ。ーを登録
         keyboard.on_press_key("shift", recorder.toggle_recording)
-        keyboard.on_press_key("esc", recorder.exit_program)
+        keyboard.on_press_key("esc", g.stop)
         keyboard.on_press_key("esc", transcription_handler.exit_program)
 
         # GUI の開始
-        #main_window = MainWindow(recorder) # 追加
-
-        # メインループ開始 (GUI の開始により不要になる)
-        recorder.main() 
+        main_window = MainWindow(recorder, g) # 追加
+        print("main_window開始")
+        
+        
+        # メインループ開始
+        #recorder.main() 
     except Exception as e:
         print(f"An error occurred: {e}")
         traceback.print_exc()

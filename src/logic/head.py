@@ -75,9 +75,9 @@ def main_transcription(c):
     else:
         return result
 def transcribe_audio(API_KEY, audio_file_path, word_list,c):
-    if API_KEY and False:
-        return sub_transcribe_audio1(API_KEY, audio_file_path, word_list)
-    elif True:
+    if API_KEY and True:
+        return sub_transcribe_audio1(API_KEY, audio_file_path, word_list, c)
+    elif False:
         return sub_transcribe_audio2(audio_file_path)
     else:
         return sub_transcribe_audio3(audio_file_path)
