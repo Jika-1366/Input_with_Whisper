@@ -24,6 +24,9 @@ class MainWindow:
         self.pause_button = ttk.Button(self.root, text="一時停止", command=self.toggle_pause)
         self.pause_button.pack()
 
+        # ルートウィンドウに最小サイズを設定
+        self.root.minsize(width=200, height=100)  # 例：幅200ピクセル、高さ100ピクセル
+
         self.root.mainloop()
 
     def toggle_pause(self):
@@ -41,7 +44,7 @@ class MainWindow:
             self.status_canvas.create_oval(5, 5, 15, 15, fill="black")  # 黒丸を描画
 
         if self.g.pause == True:
-            self.status_canvas.create_text(70, 10, text="Pausig now....", anchor="center")  # テキストの位置をずらす
+            self.status_canvas.create_text(70, 10, text="Pausig...", anchor="center")  # テキストの位置をずらす
 
         if not self.g.running:
             print("main_windows終了")
